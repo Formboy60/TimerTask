@@ -87,9 +87,9 @@ reset1.onclick = function() {
 
 // implémentation tableau
 
-
-
-
+if(localStorage.getItem("tab")){
+    document.querySelector('.tableau').innerHTML = localStorage.getItem('tab')
+}
 
 
 function ajoutLigne(numero, tache, temps){
@@ -108,13 +108,24 @@ document.querySelector('.push').addEventListener('click', () => {
     let tache = document.querySelector(".tache1").value
     let temps = document.querySelector('.haut').textContent
     ajoutLigne(dossier, tache, temps)
-    
+    localStorage.setItem('tab', document.querySelector('.tableau').innerHTML)
+    document.querySelector(".dossier1").value = ''
+    document.querySelector(".tache1").value =''
+    haut.textContent = "00:00:00"
 })
 
 document.querySelector('.push1').addEventListener('click', () => {    
     let dossier = document.querySelector(".dossier2").value
     let tache = document.querySelector(".tache2").value
     let temps = document.querySelector('.mid').textContent
-   ajoutLigne(dossier, tache, temps)
+    ajoutLigne(dossier, tache, temps)
+    localStorage.setItem('tab', document.querySelector('.tableau').innerHTML)
+    document.querySelector(".dossier2").value = ''
+    document.querySelector(".tache2").value =''
+    mid.textContent = "00:00:00"
+})
 
+document.querySelector('.effTab').addEventListener('click', () => {
+    localStorage.clear()
+    location.reload()
 })
