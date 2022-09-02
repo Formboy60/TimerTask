@@ -82,7 +82,7 @@ stop1.onclick = function() {
 }
 reset1.onclick = function() {
     mid.textContent = "00:00:00";
-    sec = 0; min = 0; hrs = 0;
+    sec1 = 0; min1 = 0; hrs1 = 0;
 }
 
 // implémentation tableau
@@ -112,6 +112,8 @@ document.querySelector('.push').addEventListener('click', () => {
     document.querySelector(".dossier1").value = ''
     document.querySelector(".tache1").value =''
     haut.textContent = "00:00:00"
+    sec = 0; min = 0; hrs = 0;
+    console.log(sec);
 })
 
 document.querySelector('.push1').addEventListener('click', () => {    
@@ -123,6 +125,8 @@ document.querySelector('.push1').addEventListener('click', () => {
     document.querySelector(".dossier2").value = ''
     document.querySelector(".tache2").value =''
     mid.textContent = "00:00:00"
+    sec1 = 0; min1 = 0; hrs1 = 0;
+    console.log(sec1);
 })
 
 document.querySelector('.effTab').addEventListener('click', () => {
