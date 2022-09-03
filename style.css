@@ -104,7 +104,14 @@ button{
 .tableau{
     margin-top: 3%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+}
+
+.date{
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 
 table{

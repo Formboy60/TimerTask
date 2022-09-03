@@ -2,11 +2,7 @@ var timeStart = 0;
 var timeEnd = 0
 let stock = 0
 
-
-
-
-
-let p = document.querySelector('p')
+let p = document.querySelector('.haut')
 let str = document.querySelector('.srt')
 let stp = document.querySelector('.stp')
 
@@ -16,7 +12,6 @@ str.addEventListener('click', () => {
   }
   timeStart = new Date(Date.now()).getTime()
   p.style.color = "green"
-  console.log(timeStart);
 })
 
 stp.addEventListener('click', () => {
@@ -32,7 +27,6 @@ stp.addEventListener('click', () => {
   stock = hourDiff
   } else { stock = stock + hourDiff}
 
-  console.log(stock);
   timeStart = 0
   
   var secDiff = stock / 1000; //in s
@@ -45,6 +39,17 @@ stp.addEventListener('click', () => {
   p.innerHTML= humanReadable.hours + 'h : ' + humanReadable.minutes +'min'
   p.style.color = "red"
 })
+
+// affichage date
+
+let date = new Date(Date.now())
+let pDate = document.querySelector('.date')
+
+pDate.innerHTML = (date.getDate() > 9 ? date.getDate() : "0" + date.getDate()) 
+                  + " / " 
+                  +((date.getMonth()+1) > 9 ?  (date.getMonth()+1) : "0" + (date.getMonth()+1))
+                  + " / " 
+                  + date.getFullYear()
 
 // implémentation tableau
 
@@ -74,8 +79,6 @@ document.querySelector('.push').addEventListener('click', () => {
     document.querySelector(".tache1").value =''
     p.textContent = "0h : 0min"
     p.style.color = 'black'
-    sec = 0; min = 0; hrs = 0;
-    console.log(sec);
 })
 
 
