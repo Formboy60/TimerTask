@@ -41,7 +41,7 @@ body{
 .erase{
     height: 100%;
     display: flex;
-    align-items: flex-end;
+    justify-content: center;
 }
 
 .effTab{
