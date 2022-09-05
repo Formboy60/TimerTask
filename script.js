@@ -1,10 +1,37 @@
-var timeStart = 0;
-var timeEnd = 0
+let timeStart = 0;
+let timeEnd = 0
 let stock = 0
 
 let p = document.querySelector('.haut')
 let str = document.querySelector('.srt')
 let stp = document.querySelector('.stp')
+
+let t
+
+function chrono(){
+
+  let affiche = new Date(Date.now()).getTime()
+  let hourDiff = affiche - timeStart;
+
+  let minDiff = hourDiff / 60 / 1000; //in minutes
+  let hDiff = hourDiff / 3600 / 1000; //in hours
+  let read = {};
+  read.hours = Math.floor(hDiff);
+  read.minutes = Math.floor(minDiff - 60 * read.hours);
+  if( p.style.color == "red"){
+    return
+  }
+  p.innerHTML= read.hours + 'h : ' + read.minutes +'min'
+  go()
+}
+
+function go(){
+  t = setTimeout(chrono, 1000)
+}
+
+function stop(){
+  t = clearTimeout(chrono)
+}
 
 str.addEventListener('click', () => {
   if(timeStart > 0 ){
@@ -12,6 +39,7 @@ str.addEventListener('click', () => {
   }
   timeStart = new Date(Date.now()).getTime()
   p.style.color = "green"
+  go()
 })
 
 stp.addEventListener('click', () => {
@@ -22,22 +50,24 @@ stp.addEventListener('click', () => {
 
   timeEnd = new Date(Date.now()).getTime()
   let hourDiff = timeEnd - timeStart;
-   
+  
   if(stock == 0){
   stock = hourDiff
   } else { stock = stock + hourDiff}
+  console.log(hourDiff);
 
   timeStart = 0
   
-  var secDiff = stock / 1000; //in s
-  var minDiff = stock / 60 / 1000; //in minutes
-  var hDiff = stock / 3600 / 1000; //in hours
-  var humanReadable = {};
+  let secDiff = stock / 1000; //in s
+  let minDiff = stock / 60 / 1000; //in minutes
+  let hDiff = stock / 3600 / 1000; //in hours
+  let humanReadable = {};
   humanReadable.hours = Math.floor(hDiff);
   humanReadable.minutes = Math.floor(minDiff - 60 * humanReadable.hours);
   
   p.innerHTML= humanReadable.hours + 'h : ' + humanReadable.minutes +'min'
   p.style.color = "red"
+  stop()
 })
 
 // affichage date
@@ -70,15 +100,19 @@ function ajoutLigne(numero, tache, temps){
 }
 
 document.querySelector('.push').addEventListener('click', () => {    
-    let dossier = document.querySelector(".dossier1").value
-    let tache = document.querySelector(".tache1").value
-    let temps = document.querySelector('.haut').textContent
+    const dossier = document.querySelector(".dossier1").value
+    const tache = document.querySelector(".tache1").value
+    const temps = document.querySelector('.haut').textContent
     ajoutLigne(dossier, tache, temps)
     localStorage.setItem('tab', document.querySelector('.tableau').innerHTML)
     document.querySelector(".dossier1").value = ''
     document.querySelector(".tache1").value =''
     p.textContent = "0h : 0min"
     p.style.color = 'black'
+    stop()
+    timeStart = 0
+    timeEnd = 0
+    stock = 0
 })
 
 
