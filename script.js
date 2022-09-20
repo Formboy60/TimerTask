@@ -9,15 +9,17 @@ let stp = document.querySelector('.stp')
 let t
 
 function chrono(){
-
+ 
   let affiche = new Date(Date.now()).getTime()
-  let hourDiff = affiche - timeStart;
+  let hourDiff = (affiche+stock) - timeStart;
 
+ 
   let minDiff = hourDiff / 60 / 1000; //in minutes
   let hDiff = hourDiff / 3600 / 1000; //in hours
   let read = {};
   read.hours = Math.floor(hDiff);
   read.minutes = Math.floor(minDiff - 60 * read.hours);
+  
   if( p.style.color == "red"){
     return
   }
@@ -30,10 +32,11 @@ function go(){
 }
 
 function stop(){
-  t = clearTimeout(chrono)
+  clearTimeout(t)
 }
 
 str.addEventListener('click', () => {
+  console.log(stock);
   if(timeStart > 0 ){
     return
   }
@@ -67,7 +70,7 @@ stp.addEventListener('click', () => {
   
   p.innerHTML= humanReadable.hours + 'h : ' + humanReadable.minutes +'min'
   p.style.color = "red"
-  stop()
+  
 })
 
 // affichage date
