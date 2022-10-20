@@ -23,7 +23,7 @@ function chrono(){
   if( p.style.color == "red"){
     return
   }
-  p.innerHTML= read.hours + 'h : ' + read.minutes +'min'
+  p.innerHTML= read.hours + ':' + read.minutes
   go()
 }
 
@@ -68,7 +68,7 @@ stp.addEventListener('click', () => {
   humanReadable.hours = Math.floor(hDiff);
   humanReadable.minutes = Math.floor(minDiff - 60 * humanReadable.hours);
   
-  p.innerHTML= humanReadable.hours + 'h : ' + humanReadable.minutes +'min'
+  p.innerHTML= humanReadable.hours + ':' + humanReadable.minutes
   p.style.color = "red"
   
 })
@@ -110,7 +110,7 @@ document.querySelector('.push').addEventListener('click', () => {
     localStorage.setItem('tab', document.querySelector('.tableau').innerHTML)
     document.querySelector(".dossier1").value = ''
     document.querySelector(".tache1").value =''
-    p.textContent = "0h : 0min"
+    p.textContent = "0:0"
     p.style.color = 'black'
     stop()
     timeStart = 0
