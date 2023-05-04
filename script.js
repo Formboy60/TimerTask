@@ -8,6 +8,16 @@ let stp = document.querySelector('.stp')
 
 let t
 
+function save() {
+  document.querySelector('.save').style.display = "none"
+  document.querySelector('.ok').style.display = "flex"
+}
+
+function ok(){
+  document.querySelector('.save').style.display = "flex"
+  document.querySelector('.ok').style.display = "none"
+}
+
 function chrono(){
  
   let affiche = new Date(Date.now()).getTime()
@@ -100,7 +110,9 @@ function ajoutLigne(numero, tache, temps){
     ligne.insertCell(0).appendChild(num)
     ligne.insertCell(1).appendChild(ta)
     ligne.insertCell(2).appendChild(tmp)
+    ligne.contentEditable = true
 }
+
 
 document.querySelector('.push').addEventListener('click', () => {    
     const dossier = document.querySelector(".dossier1").value
@@ -119,8 +131,14 @@ document.querySelector('.push').addEventListener('click', () => {
 })
 
 
-
 document.querySelector('.effTab').addEventListener('click', () => {
-    localStorage.clear()
-    location.reload()
+  localStorage.clear()
+  location.reload()
 })
+
+document.querySelector('.save').addEventListener('click', () => {    
+  localStorage.setItem('tab', document.querySelector('.tableau').innerHTML)
+  save()
+  setTimeout(ok, 1000)
+ })
+
