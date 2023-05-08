@@ -39,14 +39,28 @@ body{
     gap: 5%;
 }
 
-.erase{
-    height: 100%;
-    display: flex;
-    justify-content: center;
+.mod{
+   display: flex;
+   grid-template-columns: repeat(3, 1fr);
+   justify-content: center;
+   margin-top: 3%;
+   gap : 30px;
 }
+
+.save{
+    width: 250px; 
+}
+
+
+.ok{
+    display: none;
+    width: 250px;
+}
+
 
 .effTab{
     background-color: rgba(255, 0, 0, 0.344);
+    width: 250px;
 }
 
 .do{
@@ -132,13 +146,3 @@ td{
     background-color: white;
 }
 
-.sav{
-    display: flex;
-    justify-content: center;
-    margin-top: 2%;
-}
-
-.ok{
-    font-size: 1.5rem;
-    display: none;
-}
